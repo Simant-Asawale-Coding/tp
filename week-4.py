@@ -93,6 +93,8 @@ def write_csv_from_list_dict(filename, table, fieldnames, separator, quote):
                                    delimiter=separator,
                                    quotechar=quote,
                                    quoting=csv.QUOTE_MINIMAL)
+        # Write the header row first
+        csvwriter.writeheader()
         # Write each dictionary in the table as a row
         for row in table:
             csvwriter.writerow(row)

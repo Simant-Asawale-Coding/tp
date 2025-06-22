@@ -407,8 +407,8 @@ def test_baseball_statistics():
     # Dictionary containing information needed to access baseball statistics
     # This information is all tied to the format and contents of the CSV files
     #
-    baseballdatainfo = {"masterfile": "Master_2016.csv",   # Name of Master CSV file
-                        "battingfile": "Batting_2016.csv", # Name of Batting CSV file
+    baseballdatainfo = {"masterfile": "https://github.com/abdullah-farooq/Analyzing-Baseball-Data/blob/master/Master_2016.csv",   # Name of Master CSV file
+                        "battingfile": "https://github.com/abdullah-farooq/Analyzing-Baseball-Data/blob/master/Batting_2016.csv", # Name of Batting CSV file
                         "separator": ",",                  # Separator character in CSV files
                         "quote": '"',                      # Quote character in CSV files
                         "playerid": "playerID",            # Player ID field name

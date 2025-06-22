@@ -85,19 +85,19 @@ def write_csv_from_list_dict(filename, table, fieldnames, separator, quote):
       Writes the table to a CSV file with the specified name, using the specified
       fieldnames, separator, and quote character.
     """
-    # Open the target CSV file for writing
     with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
-        # Create a DictWriter with the provided formatting parameters
+        # Write the header row manually, quoting each fieldname
+        header = separator.join([quote + field + quote for field in fieldnames])
+        csvfile.write(header + '\n')
+        # Now use DictWriter for the data rows, no header
         csvwriter = csv.DictWriter(csvfile,
                                    fieldnames=fieldnames,
                                    delimiter=separator,
                                    quotechar=quote,
                                    quoting=csv.QUOTE_MINIMAL)
-        # Write the header row first
-        csvwriter.writeheader()
-        # Write each dictionary in the table as a row
         for row in table:
             csvwriter.writerow(row)
+
 
 ##
 ## Provided formulas for common batting statistics

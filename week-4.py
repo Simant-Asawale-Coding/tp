@@ -19,7 +19,7 @@ def read_csv_fieldnames(filename, separator, quote):
       Returns a list of strings corresponding to the field names in
       the given CSV file.
     """
-    with open(filename, newline='') as csvfile:
+    with open(filename, newline='', encoding='utf-8') as csvfile:
         csvreader = csv.DictReader(csvfile,
                                    delimiter=separator,
                                    quotechar=quote)
@@ -41,7 +41,7 @@ def read_csv_as_list_dict(filename, separator, quote):
       list map the field names to the field values for that row.
     """
     table = []
-    with open(filename, newline='') as csvfile:
+    with open(filename, newline='', encoding='utf-8') as csvfile:
         csvreader = csv.DictReader(csvfile, delimiter=separator, quotechar=quote)
         for row in csvreader:
             table.append(row)
@@ -63,7 +63,7 @@ def read_csv_as_nested_dict(filename, keyfield, separator, quote):
       field values for that row.
     """
     table = {}
-    with open(filename, newline='') as csvfile:
+    with open(filename, newline='', encoding='utf-8') as csvfile:
         csvreader = csv.DictReader(csvfile, delimiter=separator, quotechar=quote)
         for row in csvreader:
             rowid = row[keyfield]
@@ -86,7 +86,7 @@ def write_csv_from_list_dict(filename, table, fieldnames, separator, quote):
       fieldnames, separator, and quote character.
     """
     # Open the target CSV file for writing
-    with open(filename, 'w', newline='') as csvfile:
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
         # Create a DictWriter with the provided formatting parameters
         csvwriter = csv.DictWriter(csvfile,
                                    fieldnames=fieldnames,
@@ -322,7 +322,7 @@ def aggregate_by_player_id(statistics, playerid, fields):
     """
     # initialize an empty dict
     final_dict = {}
-    stats_dict = {}        
+    stats_dict = {}
         
     for row in statistics:
         
@@ -345,8 +345,7 @@ def aggregate_by_player_id(statistics, playerid, fields):
     return final_dict
         
         
-    example_output = {'playerid1': {'stat1': 'aggregated_number1', 'stat2': 'aggregated_number2'},
-                      'playerid2': {'stat1': 'aggregated_number1', 'stat2': 'aggregated_number2'}}
+
 '''
 # test1
 print(aggregate_by_player_id([{'player': '1', 'stat2': '4', 'stat1': '3', 'stat3': '5'},
@@ -407,8 +406,8 @@ def test_baseball_statistics():
     # Dictionary containing information needed to access baseball statistics
     # This information is all tied to the format and contents of the CSV files
     #
-    baseballdatainfo = {"masterfile": "https://github.com/abdullah-farooq/Analyzing-Baseball-Data/blob/master/Master_2016.csv",   # Name of Master CSV file
-                        "battingfile": "https://github.com/abdullah-farooq/Analyzing-Baseball-Data/blob/master/Batting_2016.csv", # Name of Batting CSV file
+    baseballdatainfo = {"masterfile": "Master_2016.csv",   # Name of Master CSV file
+                        "battingfile": "Batting_2016.csv",   # Name of Batting CSV file
                         "separator": ",",                  # Separator character in CSV files
                         "quote": '"',                      # Quote character in CSV files
                         "playerid": "playerID",            # Player ID field name
@@ -468,5 +467,5 @@ def test_baseball_statistics():
 # Make sure the following call to test_baseball_statistics is
 # commented out when submitting to OwlTest/CourseraTest.
 
-test_baseball_statistics()
+# test_baseball_statistics()
 
